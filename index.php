@@ -6,32 +6,18 @@ function pre(array $array) {
     echo '</pre>';
 }
 
-function get_product_total_quantity(array $products) {
-    $total_quantity = 0;
-    foreach ($products as $product) {
-        $total_quantity = $total_quantity + $product['quantity'];
-    }
-    return $total_quantity;
-}
+pre($_GET);
 
-$fruits = [
-    'title' => 'Fruits',
-    'products' => [
-        ['name' => 'Banane', 'quantity' => 5],
-        ['name' => 'Pomme', 'quantity' => 10],
-        ['name' => 'Tomate', 'quantity' => 3],
-    ],
-];
+// $current_volume_to_convert = null;
+// if (isset($_GET['volume_to_convert'])) {
+//     $current_volume_to_convert = $_GET['volume_to_convert'];
+// }
 
-$shopping_list = [
-    $fruits,
-    [
-        'title' => 'Légumes',
-        'products' => [
-            ['name' => 'Asperge', 'quantity' => 5],
-            ['name' => 'Brocolis', 'quantity' => 50],
-        ],
-    ],
-];
+$current_volume_to_convert = isset($_GET['volume_to_convert']) ? $_GET['volume_to_convert'] : null;
+$current_volume_unit_to_convert = isset($_GET['volume_unit_to_convert']) ? $_GET['volume_unit_to_convert'] : null;
+$current_volume_unit_converted = isset($_GET['volume_unit_converted']) ? $_GET['volume_unit_converted'] : null;
 
-require 'templates/page.php';
+$volume_units = ['ml', 'cl', 'dl', 'l'];
+
+
+require 'templates/index.template.php';
