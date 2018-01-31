@@ -11,7 +11,7 @@
 <form method="get">
     <input type="text" name="volume_to_convert" value="<?php echo $current_volume_to_convert; ?>">
     <select class="" name="volume_unit_to_convert">
-        <?php foreach ($volume_units as $volume_unit): ?>
+        <?php foreach ($volume_units as $volume_unit => $unit_coefficient): ?>
             <option
                 value="<?php echo $volume_unit; ?>"
                 <?php echo $current_volume_unit_to_convert === $volume_unit ? 'selected' : '' ?>
@@ -20,9 +20,10 @@
             </option>
         <?php endforeach; ?>
     </select>
-    →
+    =
+    <span class="volume-converted"><?php echo $volume_converted; ?></span>
     <select class="" name="volume_unit_converted">
-        <?php foreach ($volume_units as $volume_unit): ?>
+        <?php foreach ($volume_units as $volume_unit => $unit_coefficient): ?>
             <option
                 value="<?php echo $volume_unit; ?>"
                 <?php echo $current_volume_unit_converted === $volume_unit ? 'selected' : '' ?>

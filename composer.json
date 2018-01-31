@@ -1,0 +1,12 @@
+{
+    "name": "caro/caro",
+    "require": {
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "authors": [
+        {
+            "name": "caroline-fels",
+            "email": "caroline.fels@gmail.com"
+        }
+    ]
+}
