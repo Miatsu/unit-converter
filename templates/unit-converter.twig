@@ -1,0 +1,32 @@
+<form method="get">
+    <input type="text" name="{{ type }}_to_convert" value="{{ current_value_to_convert }}">
+    <select name="{{ type }}_unit_to_convert">
+        {% for value_unit, unit_coefficient in value_units %}
+            <option
+                value="{{ value_unit }}"
+                {% if current_value_unit_to_convert == value_unit %}
+                    selected
+                {% endif %}
+            >
+                {{ value_unit }}
+            </option>
+        {% endfor %}
+    </select>
+    =
+    {% if value_converted %}
+        <span class="value-converted">{{ value_converted }}</span>
+    {% endif %}
+    <select name="{{ type }}_unit_converted">
+        {% for value_unit, unit_coefficient in value_units %}
+            <option
+                value="{{ value_unit }}"
+                {% if current_value_unit_converted == value_unit %}
+                    selected
+                {% endif %}
+            >
+                {{ value_unit }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" />
+</form>

@@ -7,43 +7,24 @@
   <script src="js/script.js"></script>
 </head>
 <body>
-    {{ "Volume à convertir : " ~ current_volume_to_convert }}
-    <br>
-    {{ "Unité à convertir : " ~ current_volume_unit_to_convert }}
-    <br>
-    {{ "Unité convertie : " ~ current_volume_unit_converted }}
+    <h1>Volumes</h1>
+    {% include 'unit-converter.twig' with {
+        type: 'volume',
+        current_value_to_convert: current_volume_to_convert,
+        current_value_unit_converted: current_volume_unit_converted,
+        current_value_unit_to_convert: current_volume_unit_to_convert,
+        value_units: volume_units,
+        value_converted: volume_converted,
+    } only %}
 
-    <form method="get">
-        <input type="text" name="volume_to_convert" value="{{ current_volume_to_convert }}">
-        <select name="volume_unit_to_convert">
-            {% for volume_unit, unit_coefficient in volume_units %}
-                <option
-                    value="{{ volume_unit }}"
-                    {% if current_volume_unit_to_convert == volume_unit %}
-                        selected
-                    {% endif %}
-                >
-                    {{ volume_unit }}
-                </option>
-            {% endfor %}
-        </select>
-        =
-        {% if volume_converted %}
-            <span class="volume-converted">{{ volume_converted }}</span>
-        {% endif %}
-        <select name="volume_unit_converted">
-            {% for volume_unit, unit_coefficient in volume_units %}
-                <option
-                    value="{{ volume_unit }}"
-                    {% if current_volume_unit_converted == volume_unit %}
-                        selected
-                    {% endif %}
-                >
-                    {{ volume_unit }}
-                </option>
-            {% endfor %}
-        </select>
-        <input type="submit" />
-    </form>
+    <h1>Poids</h1>
+    {% include 'unit-converter.twig' with {
+        type: 'weight',
+        current_value_to_convert: current_weight_to_convert,
+        current_value_unit_converted: current_weight_unit_converted,
+        current_value_unit_to_convert: current_weight_unit_to_convert,
+        value_units: weight_units,
+        value_converted: weight_converted,
+    } only %}
 </body>
 </html>
