@@ -1,1 +1,49 @@
-Hello {{ name }}!
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Formulaires de conversion</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js"></script>
+</head>
+<body>
+    {{ "Volume à convertir : " ~ current_volume_to_convert }}
+    <br>
+    {{ "Unité à convertir : " ~ current_volume_unit_to_convert }}
+    <br>
+    {{ "Unité convertie : " ~ current_volume_unit_converted }}
+
+    <form method="get">
+        <input type="text" name="volume_to_convert" value="{{ current_volume_to_convert }}">
+        <select name="volume_unit_to_convert">
+            {% for volume_unit, unit_coefficient in volume_units %}
+                <option
+                    value="{{ volume_unit }}"
+                    {% if current_volume_unit_to_convert == volume_unit %}
+                        selected
+                    {% endif %}
+                >
+                    {{ volume_unit }}
+                </option>
+            {% endfor %}
+        </select>
+        =
+        {% if volume_converted %}
+            <span class="volume-converted">{{ volume_converted }}</span>
+        {% endif %}
+        <select name="volume_unit_converted">
+            {% for volume_unit, unit_coefficient in volume_units %}
+                <option
+                    value="{{ volume_unit }}"
+                    {% if current_volume_unit_converted == volume_unit %}
+                        selected
+                    {% endif %}
+                >
+                    {{ volume_unit }}
+                </option>
+            {% endfor %}
+        </select>
+        <input type="submit" />
+    </form>
+</body>
+</html>
